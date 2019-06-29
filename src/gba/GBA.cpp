@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cstring>
+#include <iostream>
 #ifndef _MSC_VER
 #include <strings.h>
 #endif
@@ -12,6 +14,10 @@
 #include "../Util.h"
 #include "../common/ConfigManager.h"
 #include "../common/Port.h"
+extern "C"
+{
+	#include "../common/ffplay.h"
+};
 #include "Cheats.h"
 #include "EEprom.h"
 #include "Flash.h"
@@ -35,6 +41,9 @@
 #ifdef __GNUC__
 #define _stricmp strcasecmp
 #endif
+
+#define debuggerReadByte(addr) \
+    map[(addr) >> 24].address[(addr)&map[(addr) >> 24].mask]
 
 extern int emulating;
 bool debugger;
@@ -2006,6 +2015,15 @@ void CPUSoftwareInterrupt(int comment)
         return;
     }
 #endif
+    if (comment == 0xf8) {
+//		std::cout << "handle swi 0xf8\n";
+		char filename[255];
+		strcpy_s(filename, 255, (const char *)&debuggerReadByte(reg[0].I));
+		char *ffplay_argv[2] = {NULL, filename};
+//		std::cout << "before ffplay_main\n";
+        int ret = ffplay_main(2, ffplay_argv);
+        return;
+    }
     if (useBios) {
 #ifdef GBA_LOGGING
         if (systemVerbose & VERBOSE_SWI) {

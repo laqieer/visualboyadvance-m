@@ -256,6 +256,14 @@ set(
     ${OPENGL_LIBRARIES}
     ${ZLIB_LIBRARY}
     ${PNG_LIBRARY}
+	avcodec
+	avdevice
+	avfilter
+	avformat
+	avutil
+	postproc
+	swresample
+	swscale
 )
 
 if(ENABLE_FFMPEG)
@@ -627,6 +635,9 @@ if(ENABLE_FFMPEG)
     set(SRC_MAIN ${SRC_MAIN} src/common/ffmpeg.cpp)
     set(HDR_MAIN ${HDR_MAIN} src/common/ffmpeg.h)
 endif()
+
+set(SRC_MAIN ${SRC_MAIN} src/common/ffplay.c)
+set(HDR_MAIN ${HDR_MAIN} src/common/ffplay.h)
 
 if(ENABLE_NLS)
     set(HDR_MAIN ${HDR_MAIN} src/NLS.h)
