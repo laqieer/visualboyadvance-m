@@ -1,6 +1,19 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+-------
+
+**New features in this fork**
+
+Add a fake system call to play video.
+
+[example](https://github.com/laqieer/MyFE7JProject/commit/92ab438840dce6a53359a017bfd879dd36048f19)
+
+[video](https://youtu.be/9lQHbwuNofc)
+
+[implementation](https://github.com/laqieer/visualboyadvance-m/commit/cc25a85ae5c49d8109c24555ecade321fde76d30)
+
+-------
 
 - [Visual Boy Advance - M](#visual-boy-advance---m)
   - [Building](#building)
